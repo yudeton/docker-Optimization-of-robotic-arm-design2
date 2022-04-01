@@ -1,10 +1,8 @@
 # 這個映像檔內包含
 1. Ubuntu 18.04
 2. ROS melodic
-3. yolo v4 ROS package
-4. OpenCV3.2
-5. Cuda 10.2
-6. Realsense SDK & library
+3. ROS package: moveit ....
+4. Cuda 10.2
 
 # Now create a script to run the image called run_my_image.bash
 
@@ -33,6 +31,7 @@ nvidia-docker run -it \
     --volume="$XAUTH:$XAUTH" \
     --runtime=nvidia \
     --privileged \
+    -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
     samkaiyang/ubuntu_solomon:($tag_version))\
     /bin/bash
@@ -43,27 +42,9 @@ chmod a+x run_my_image.bash
 ```
 # Execute the script
 ```
-./run_my_image.bash
+sudo ./run_my_image.bash
 ```
 # If you want to add multiple terminals, you can enter the following commands in the new terminal
 ```
 docker exec -it --user root ($CONTAINER ID) /bin/bash
-```
-# Run yolov4 use realsense Pre-work(open docker container)
-```
-cd /Documents/yolov4_ws/src/rs_d435i
-source create_catkin_ws.sh
-cd /Documents/yolov4_ws
-catkin_make
-```
-# Run yolov4 use realsense(open docker container)
-```
-source devel/setup.bash
-roslaunch darknet_ros yolo_v4.launch
-```
--open the new terminal(open docker container)
-```
-cd /Documents/yolov4_ws
-source devel/setup.bash
-roslaunch realsense2_camera rs_rgbd.launch align_depth:=true filters:=pointcloud
 ```
