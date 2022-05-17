@@ -33,7 +33,7 @@ nvidia-docker run -it \
     --privileged \
     -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
-    samkaiyang/ubuntu_solomon:($tag_version))\
+    samkaiyang/opt_dynamic_design:($tag_version))\
     /bin/bash
 ```
 # Make the script executable
