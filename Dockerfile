@@ -106,20 +106,24 @@ RUN apt-get update && \
     apt-get install -y qt5-doc-html qtbase5-doc-html && \
     apt-get install -y qtbase5-examples && \
     apt-get install -y libxcb-xinerama0 && \
-    pip3 install openpyxl && \
-    pip3 install spatialmath-python && \
-    pip3 install numpy && \
-    pip3 install -U matplotlib && \
-    pip3 install argparse && \
-    pip3 install PySide2 && \
-    pip3 install roboticstoolbox-python && \
-    pip3 install sympy && \
-    apt install -y ros-melodic-moveit && \
-    
-    # add support
-    pip3 install pyyaml && \
-    pip3 install rospkg && \
-    pip3 install numpy-stl
+    pip3 install rospkg == 1.3.0 && \
+    pip3 install pyyaml >= 5.4 && \
+    pip3 install openpyxl == 3.0.9 && \
+    pip3 install spatialmath-python == 0.11 && \
+    pip3 install numpy>=1.21 && \
+    pip3 install matplotlib == 2.1.1 && \
+    pip3 install argparse == 1.4.0 && \
+    pip3 install PySide2 == 5.15.2 && \
+    pip3 install PySide2extn == 1.0.0 && \
+    pip3 install roboticstoolbox-python == 0.11.0 && \
+    pip3 install sympy == 1.9 && \
+    pip3 install numpy-stl == 2.16.3 && \
+    pip3 install alphashape && \
+    pip3 install plotly && \
+    pip3 install torch && \
+    pip3 install torchvision && \
+    pip3 install torchaudio && \
+    apt install -y ros-melodic-moveit
 
 # 使用者新增
 RUN useradd -ms/bin/bash iclab && echo "iclab:iclab" | chpasswd && \
