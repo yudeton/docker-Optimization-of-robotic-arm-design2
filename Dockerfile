@@ -106,25 +106,29 @@ RUN apt-get update && \
     apt-get install -y qt5-doc-html qtbase5-doc-html && \
     apt-get install -y qtbase5-examples && \
     apt-get install -y libxcb-xinerama0 && \
-    pip3 install rospkg == 1.3.0 && \
-    pip3 install pyyaml >= 5.4 && \
-    pip3 install openpyxl == 3.0.9 && \
-    pip3 install spatialmath-python == 0.11 && \
+    apt-get install -y ros-melodic-moveit && \
+    apt-get install python3-tk
+
+RUN pip3 install rospkg==1.3.0  && \
+    pip3 install pyyaml>=5.4  && \
+    pip3 install openpyxl==3.0.9  && \
     pip3 install numpy>=1.21 && \
-    pip3 install matplotlib == 2.1.1 && \
-    pip3 install argparse == 1.4.0 && \
-    pip3 install PySide2 == 5.15.2 && \
-    pip3 install PySide2extn == 1.0.0 && \
-    pip3 install roboticstoolbox-python == 0.11.0 && \
-    pip3 install sympy == 1.9 && \
-    pip3 install numpy-stl == 2.16.3 && \
+    pip3 install matplotlib==2.1.1  && \
+    pip3 install argparse==1.4.0 && \
+    pip3 install PySide2==5.15.2 && \
+    pip3 install PySide2extn==1.0.0 && \
+    pip3 install swift-sim==0.10.0 && \
+    pip3 install spatialgeometry==0.2.0 && \
+    pip3 install spatialmath-python==0.11  && \
+    pip3 install roboticstoolbox-python==0.11.0 && \
+    pip3 install sympy==1.9 && \
+    pip3 install numpy-stl==2.16.3 && \
     pip3 install alphashape && \
     pip3 install plotly && \
-    pip3 install torch && \
-    pip3 install torchvision && \
-    pip3 install torchaudio && \
-    apt install -y ros-melodic-moveit
-
+    # pip3 install torch && \
+    # pip3 install torchvision && \
+    # pip3 install torchaudio && \
+    pip3 install pandas
 # 使用者新增
 RUN useradd -ms/bin/bash iclab && echo "iclab:iclab" | chpasswd && \
 adduser iclab sudo
