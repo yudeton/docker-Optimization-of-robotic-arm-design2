@@ -1,7 +1,7 @@
 #要訪問CUDA開發工具，您應該使用devel映像。這些是相關的標籤：
 # 1.nvidia/cuda:10.2-devel-ubuntu18.04
 # 2.nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
-FROM nvidia/cuda:10.2-devel-ubuntu18.04
+FROM nvidia/cuda:11.1-devel-ubuntu18.04
 #指定docker image存放位置
 VOLUME ["/storage"]
 MAINTAINER sam tt00621212@gmail.com
@@ -22,6 +22,8 @@ ARG SSH_PRIVATE_KEY
 
 RUN mkdir -p /code
 WORKDIR /code
+
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
 
 RUN apt-get update &&  apt-get install -y --no-install-recommends make g++ && \
 # Dockerfile for OpenCV with CUDA C++, Python 2.7 / 3.6 development 
@@ -107,6 +109,7 @@ RUN apt-get update && \
     apt-get install -y qtbase5-examples && \
     apt-get install -y libxcb-xinerama0 && \
     apt-get install -y ros-melodic-moveit && \
+    apt-get install -y ros-melodic-moveit-visual-tools && \
     apt-get install python3-tk
 
 RUN pip3 install rospkg==1.3.0  && \
@@ -129,11 +132,12 @@ RUN pip3 install rospkg==1.3.0  && \
     # pip3 install torchvision && \
     # pip3 install torchaudio && \
     pip3 install pandas
+# for windows display desktop
+RUN apt install -y xfce4
 # 使用者新增
 RUN useradd -ms/bin/bash iclab && echo "iclab:iclab" | chpasswd && \
 adduser iclab sudo
-
-
+ 
 RUN /bin/bash -c '. /opt/ros/melodic/setup.bash'
 # ADD bashrc /.bashrc
 
