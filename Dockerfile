@@ -1,7 +1,7 @@
 #要訪問CUDA開發工具，您應該使用devel映像。這些是相關的標籤：
 # 1.nvidia/cuda:10.2-devel-ubuntu18.04
 # 2.nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
-FROM nvidia/cuda:11.1-devel-ubuntu18.04
+FROM nvidia/cuda:11.1.1-devel-ubuntu18.04
 #指定docker image存放位置
 VOLUME ["/storage"]
 MAINTAINER sam tt00621212@gmail.com
@@ -145,9 +145,9 @@ RUN /bin/bash -c '. /opt/ros/melodic/setup.bash'
 USER iclab
 WORKDIR /home/iclab
 USER root
-RUN mkdir -p /teco_ws/src
-WORKDIR /teco_ws/src
-RUN git clone https://github.com/SamKaiYang/Optimization-of-robotic-arm-design.git
+RUN mkdir -p /drl_robotics_arm_ws/src
+WORKDIR /drl_robotics_arm_ws/src
+# RUN git clone https://github.com/SamKaiYang/Optimization-of-robotic-arm-design.git
 WORKDIR ..
 # RUN catkin_make
 # RUN . devel/setup.bash
