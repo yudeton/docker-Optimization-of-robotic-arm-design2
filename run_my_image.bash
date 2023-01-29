@@ -13,7 +13,7 @@
 xhost +local:docker 
 
 nvidia-docker run -it \
-    --user=root \
+    --user=iclab \
     --net=host \
     --rm --ipc=host \
     --env="DISPLAY=$DISPLAY" \
@@ -25,5 +25,5 @@ nvidia-docker run -it \
     --privileged \
     -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
-    samkaiyang/opt_dynamic_design:v3 \
+    samkaiyang/opt_dynamic_design:v5 \
     /bin/bash

@@ -20,6 +20,8 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 
 ARG SSH_PRIVATE_KEY
 
+COPY ./cmake-3.12.1 /Documents/cmake-3.12.1
+
 RUN mkdir -p /code
 WORKDIR /code
 
@@ -128,11 +130,33 @@ RUN pip3 install rospkg==1.3.0  && \
     pip3 install numpy-stl==2.16.3 && \
     pip3 install alphashape && \
     pip3 install plotly && \
-    # pip3 install torch && \
-    # pip3 install torchvision && \
-    # pip3 install torchaudio && \
-    pip3 install pandas
+    pip3 install torch && \
+    pip3 install torchvision && \
+    pip3 install torchaudio && \
+    pip3 install pandas && \
+    pip3 install tensorflow==2.4.1 && \
+    pip3 install tf-agents==0.9.0 && \
+    pip3 install tensorflow_probability==0.12.2 && \
+    pip3 install tensorboardX && \
+    pip3 install imageio && \
+    pip3 install imageio-ffmpeg && \
+    pip3 install gym==0.20.0 && \
+    pip3 install seaborn && \
+    pip3 install scikit-learn
+
+# install Cmake
+RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
+    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
+    apt-get update && \
+    apt-get install cmake
 # for windows display desktop
+
+# install VS code
+RUN apt install software-properties-common apt-transport-https wget -y && \
+    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
+    apt install -y code
+
 RUN apt install -y xfce4
 # 使用者新增
 RUN useradd -ms/bin/bash iclab && echo "iclab:iclab" | chpasswd && \

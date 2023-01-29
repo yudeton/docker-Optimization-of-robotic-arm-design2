@@ -48,3 +48,8 @@ sudo ./run_my_image.bash
 ```
 docker exec -it --user root ($CONTAINER ID) /bin/bash
 ```
+
+# Open VS code
+```
+sudo code /directory-to-open --user-data-dir='.' --no-sandbox
+```
