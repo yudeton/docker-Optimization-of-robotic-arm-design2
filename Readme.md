@@ -4,6 +4,14 @@
 3. ROS package: moveit ....
 4. Cuda 10.2
 
+# tar 解壓縮
+```
+tar xvf cmake-3.20.0.tar.gz
+```
+# build images
+```
+docker build -t samkaiyang/opt_dynamic_design:($tag_version) .
+```
 # Now create a script to run the image called run_my_image.bash
 
 ```
