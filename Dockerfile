@@ -27,12 +27,16 @@ WORKDIR /code
 
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
 
-RUN apt-get update &&  apt-get install -y --no-install-recommends make g++ && \
+# RUN apt-get update &&  apt-get install -y --no-install-recommends make g++ && \
+# TODO: test
+RUN apt-get install -y --no-install-recommends make g++ && \
+
 # Dockerfile for OpenCV with CUDA C++, Python 2.7 / 3.6 development 
 # Pulling CUDA-CUDNN image from nvidia
 # Basic toolchain 
-    apt-get update && \
-        apt-get install -y \
+# TODO: test
+    # apt-get update && \
+        apt-get install -y  && \
         build-essential \
         git \
         wget \
@@ -47,14 +51,19 @@ RUN apt-get update &&  apt-get install -y --no-install-recommends make g++ && \
     apt-get autoremove -y && \
     #set debconf-utils
     apt-get install software-properties-common -y &&\
-    apt-get update &&\
+    # TODO: test
+    # apt-get update &&\
     add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main" &&\
-    apt-get  update &&\
+    # TODO: test
+    # apt-get  update &&\
     apt install libjasper1 libjasper-dev -y && \
-    apt-get update &&  apt-get install --assume-yes apt-utils  && \
+    # TODO: test
+    # apt-get update && \
+    apt-get install --assume-yes apt-utils  && \
     apt-get -y install debconf-utils && \
     #setting system clock
-    apt-get update && \
+    # TODO: test
+    # apt-get update && \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get install -y tzdata && \
     ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime && \
@@ -65,13 +74,16 @@ RUN apt-get update &&  apt-get install -y --no-install-recommends make g++ && \
     apt-get install dialog apt-utils -y && \
     echo '* libraries/restart-without-asking boolean true' |  debconf-set-selections && \
 # Fix not find lsb-release
-    apt-get update && apt-get install -y lsb-release && apt-get clean all && \
+    # TODO: test
+    # apt-get update && \ 
+    apt-get install -y lsb-release && apt-get clean all && \
 # Fix add-apt-repository: command not found error
     apt-get install -y software-properties-common && \
 # Install ROS melodic
     sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
     apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 && \
-    apt update && \
+    # TODO: test
+    # apt update && \
     apt install -y ros-melodic-desktop-full && \
     echo "source /opt/ros/melodic/setup.bash" >> /root/.bashrc && \
     /bin/bash -c "source /root/.bashrc" && \
@@ -83,8 +95,10 @@ SHELL ["/bin/bash","-c"]
 
 
 # install dependencies
-RUN apt update && \
-    DEBIAN_FRONTEND=noninteractive apt install -y \
+# TODO: test
+# RUN apt update && \
+# TODO: test
+RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     wget \
     python-rosinstall \
     python-catkin-tools \
@@ -94,9 +108,10 @@ RUN apt update && \
     libglfw3-dev && \
     # clear cache
     rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && \
-    apt-get install -y python3-pip python-pip python3-dev build-essential && \
+# TODO: test
+# RUN apt-get update && \
+# TODO: test
+RUN apt-get install -y python3-pip python-pip python3-dev build-essential && \
     apt --fix-broken install && \
     #apt-get install -y python3-catkin-pkg && \
     pip2 install --upgrade setuptools && \
