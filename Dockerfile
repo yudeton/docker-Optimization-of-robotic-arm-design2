@@ -20,7 +20,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 
 ARG SSH_PRIVATE_KEY
 
-COPY ./cmake-3.12.1 /Documents/cmake-3.12.1
+COPY ./cmake-3.20.0 /Documents/cmake-3.20.0
 
 RUN mkdir -p /code
 WORKDIR /code
@@ -96,9 +96,11 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
-    apt-get install -y python3-pip python3-dev build-essential && \
+    apt-get install -y python3-pip python-pip python3-dev build-essential && \
     apt --fix-broken install && \
     #apt-get install -y python3-catkin-pkg && \
+    pip2 install --upgrade setuptools && \
+    pip2 install sympy && \
     pip3 install catkin_pkg && \
     sudo apt-get update && sudo apt-get -y upgrade && \
     pip3 install --upgrade pip && \
@@ -113,6 +115,18 @@ RUN apt-get update && \
     apt-get install -y ros-melodic-moveit && \
     apt-get install -y ros-melodic-moveit-visual-tools && \
     apt-get install python3-tk
+
+
+# install Cmake
+# RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
+#     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
+#     apt-get update && \
+#     apt-get install cmake
+WORKDIR /Documents/cmake-3.20.0
+RUN cmake . && \
+    make -j8 && \
+    sudo make install && \
+    sudo update-alternatives --install /usr/bin/cmake cmake /usr/local/bin/cmake 1 --force 
 
 RUN pip3 install rospkg==1.3.0  && \
     pip3 install pyyaml>=5.4  && \
@@ -142,13 +156,14 @@ RUN pip3 install rospkg==1.3.0  && \
     pip3 install imageio-ffmpeg && \
     pip3 install gym==0.20.0 && \
     pip3 install seaborn && \
-    pip3 install scikit-learn
+    pip3 install scikit-learn && \
+    pip3 install pybullet --upgrade --user && \
+    pip3 install pybullet_planning && \
+    pip3 install pytest
 
-# install Cmake
-RUN wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
-    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
-    apt-get update && \
-    apt-get install cmake
+
+
+
 # for windows display desktop
 
 # install VS code

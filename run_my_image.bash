@@ -25,5 +25,5 @@ nvidia-docker run -it \
     --privileged \
     -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
-    samkaiyang/opt_dynamic_design:v5 \
+    samkaiyang/opt_dynamic_design:v6 \
     /bin/bash
