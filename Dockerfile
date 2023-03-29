@@ -103,7 +103,7 @@ RUN apt-get update && \
     apt --fix-broken install && \
     #apt-get install -y python3-catkin-pkg && \
     pip2 install --upgrade setuptools && \
-    pip2 install sympy && \
+    apt-get install python-sympy && \
     pip3 install catkin_pkg && \
     sudo apt-get update && sudo apt-get -y upgrade && \
     pip3 install --upgrade pip && \

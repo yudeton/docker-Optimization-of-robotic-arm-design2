@@ -61,3 +61,21 @@ docker exec -it --user root ($CONTAINER ID) /bin/bash
 ```
 sudo code /directory-to-open --user-data-dir='.' --no-sandbox
 ```
+
+# note: use tensorflow error fixed
+at /usr/local/lib/python3.6/dist-packages/tf_agents/utils/common.py
+```
+# def save(self, global_step: tf.Tensor,
+  #          options: tf.train.CheckpointOptions = None):
+  #   """Save state to checkpoint."""
+  #   saved_checkpoint = self._manager.save(
+  #       checkpoint_number=global_step, options=options)
+  #   self._checkpoint_exists = True
+  #   logging.info('%s', 'Saved checkpoint: {}'.format(saved_checkpoint))
+
+  def save(self, global_step):
+    """Save state to checkpoint."""
+    saved_checkpoint = self._manager.save(checkpoint_number=global_step)
+    self._checkpoint_exists = True
+    logging.info('%s', 'Saved checkpoint: {}'.format(saved_checkpoint))
+```
