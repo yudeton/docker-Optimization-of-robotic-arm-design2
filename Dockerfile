@@ -26,7 +26,7 @@ RUN mkdir -p /code
 WORKDIR /code
 
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
-RUN sed -i 's/http:\/\/archive\.ubuntu\.com/http:\/\/mirrors\.aliyun\.com/g' /etc/apt/sources.list
+# RUN sed -i 's/http:\/\/archive\.ubuntu\.com/http:\/\/mirrors\.aliyun\.com/g' /etc/apt/sources.list
 
 # RUN apt-get dist-upgrade
 RUN apt-get update &&  apt-get install -y --no-install-recommends make g++ && \
