@@ -13,13 +13,18 @@
 xhost +local:docker 
 
 nvidia-docker run -it \
+    -p 6006:6006 \
     --user=iclab \
     --net=host \
     --rm --ipc=host \
+    --env="DISPLAY=$DISPLAY" \
+    --env="QT_X11_NO_MITSHM=1" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --env="XAUTHORITY=$XAUTH" \
+    --volume="$XAUTH:$XAUTH" \
     --runtime=nvidia \
     --privileged \
     -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
-    -p 8080:8080 \
     samkaiyang/opt_dynamic_design:v6 \
     /bin/bash

@@ -13,6 +13,7 @@
 xhost +local:docker 
 
 nvidia-docker run -it \
+    -p 6006:6006 \
     --user=iclab \
     --net=host \
     --rm --ipc=host \
