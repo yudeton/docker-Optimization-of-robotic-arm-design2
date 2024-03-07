@@ -187,9 +187,10 @@ RUN /bin/bash -c '. /opt/ros/melodic/setup.bash'
 USER iclab
 WORKDIR /home/iclab
 USER root
+RUN echo 'PS1="\[\e[0;33m\][\u@\h \W]\$\[\e[m\] "' >> /root/.bashrc
 RUN mkdir -p /drl_robotics_arm_ws/src
 WORKDIR /drl_robotics_arm_ws/src
-# RUN git clone https://github.com/SamKaiYang/Optimization-of-robotic-arm-design.git
+RUN git clone https://github.com/yudeton/thesis2.git
 WORKDIR ..
 # RUN catkin_make
 # RUN . devel/setup.bash
