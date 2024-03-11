@@ -170,12 +170,12 @@ RUN pip3 install rospkg==1.3.0  && \
 # for windows display desktop
 
 # install VS code
-RUN apt install software-properties-common apt-transport-https wget -y && \
-    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - && \
-    add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
-    apt install -y code
+# RUN apt install software-properties-common apt-transport-https wget -y && \
+#    wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - && \
+#    add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" && \
+#    apt install -y code
 
-RUN apt install -y xfce4
+# RUN apt install -y xfce4
 # 使用者新增
 RUN useradd -ms/bin/bash iclab && echo "iclab:iclab" | chpasswd && \
 adduser iclab sudo
