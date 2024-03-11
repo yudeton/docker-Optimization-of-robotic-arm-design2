@@ -26,5 +26,5 @@ nvidia-docker run -it \
     --privileged \
     -e LANG=C.UTF-8 \
     --volume=/dev:/dev \
-    samkaiyang/opt_dynamic_design:v6 \
+    yudeton/drl:v1 \
     /bin/bash
